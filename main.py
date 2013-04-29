@@ -1,7 +1,8 @@
+import os
+
 __author__ = 'Maximilian Berger'
 
-
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from urllib.request import urlopen, HTTPBasicAuthHandler, HTTPPasswordMgrWithDefaultRealm
 from SoftParser import SoftParser
 from Softq_AccessData import softq_user
@@ -32,6 +33,8 @@ try:
         pdf_dat = opener.open(u.getUrl())
         f.write(pdf_dat.read())
         f.close()
-except HTTPError as e:
-    print(e)
+except (HTTPError, URLError) as e:
+    print(e.__str__() + " Link: " + u.getUrl())
+    f.close()
+    os.remove(u.getName())
 

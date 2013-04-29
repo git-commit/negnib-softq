@@ -1,4 +1,4 @@
-__author__ = 'Maxi'
+__author__ = 'Maximilian Berger'
 
 
 class pdf_doc(object):
