@@ -4,16 +4,16 @@ __author__ = 'Maximilian Berger'
 
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen, HTTPBasicAuthHandler, HTTPPasswordMgrWithDefaultRealm
-from SoftParser import SoftParser
-from Softq_AccessData import softq_user
-from Softq_AccessData import softq_password
+from DownloadParser import DownloadParser
+from AccessData import softq_user
+from AccessData import softq_pw
 from urllib import request
 
 base_url = 'http://www.soft-eng.de/2013_1/softq/'
 url = base_url+'semesterplan_softq.html'
 res = urlopen(url)
 dat = res.read().decode("iso-8859-1")
-parser = SoftParser(base_url)
+parser = DownloadParser(base_url)
 parser.feed(dat)
 download_list = parser.getLinkList()
 
@@ -22,7 +22,7 @@ password_mgr = HTTPPasswordMgrWithDefaultRealm()
 password_mgr.add_password(None,
                           base_url,
                           softq_user,
-                          softq_password)
+                          softq_pw)
 auth_handler = HTTPBasicAuthHandler(password_mgr)
 opener = request.build_opener(auth_handler)
 
