@@ -26,10 +26,10 @@ password_mgr.add_password(None,
 auth_handler = HTTPBasicAuthHandler(password_mgr)
 opener = request.build_opener(auth_handler)
 
-if not os.path.exists('pdf'):
-  os.mkdir('pdf')
+if not os.path.exists('files'):
+  os.mkdir('files')
 
-os.chdir('pdf')
+os.chdir('files')
 
 try:
     for u in download_list:

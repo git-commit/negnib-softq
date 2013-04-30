@@ -34,5 +34,6 @@ nosetests.xml
 .project
 .pydevproject
 .idea
+files
 
 Softq_AccessData.py
