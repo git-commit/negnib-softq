@@ -29,7 +29,7 @@ opener = request.build_opener(auth_handler)
 try:
     for u in download_list:
         print("Downloading: "+u.__repr__())
-        f = open(u.getName(), 'wb')
+        f = open('pdf/'+u.getName(), 'wb')
         pdf_dat = opener.open(u.getUrl())
         f.write(pdf_dat.read())
         f.close()
