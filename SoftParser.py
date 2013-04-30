@@ -13,8 +13,9 @@ class SoftParser(HTMLParser):
         self.linkList = list()
 
     def handle_starttag(self, tag, attrs):
-        raw_link = attrs[0][1]
-        if (tag == 'a') and ('pdf' in raw_link):
+        if (tag == 'a'):
+          raw_link = attrs[0][1]
+          if('pdf' in raw_link):
             normalized_url = quote(self.base_url + raw_link,safe="%/:=&?~#+!$,;'@()*[]")
             name = raw_link[6:]
             self.linkList.append(pdf_doc(normalized_url,name))
