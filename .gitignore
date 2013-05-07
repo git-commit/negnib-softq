@@ -38,3 +38,4 @@ files
 
 Softq_AccessData.py
 AccessData.py
+__pycache__

@@ -8,6 +8,7 @@ from DownloadParser import DownloadParser
 from AccessData import softq_user
 from AccessData import softq_pw
 from urllib import request
+from hashlib import md5
 
 base_url = 'http://www.soft-eng.de/2013_1/softq/'
 url = base_url+'semesterplan_softq.html'
@@ -27,19 +28,18 @@ auth_handler = HTTPBasicAuthHandler(password_mgr)
 opener = request.build_opener(auth_handler)
 
 if not os.path.exists('files'):
-  os.mkdir('files')
+    os.mkdir('files')
 
 os.chdir('files')
 
 try:
     for u in download_list:
         print("Downloading: "+u.__repr__())
-        f = open(u.getName(), 'wb')
         pdf_dat = opener.open(u.getUrl())
-        f.write(pdf_dat.read())
-        f.close()
+        with open(u.getName(), 'wb') as f:
+            f.write(pdf_dat.read())
+
 except (HTTPError, URLError) as e:
     print(e.__str__() + " Link: " + u.getUrl())
-    f.close()
     os.remove(u.getName())
 
